@@ -12,6 +12,5 @@ angular.module('myApp.roadmap', ['ngRoute'])
   .controller('roadmapCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     $http.get('https://learning-ninja-api.herokuapp.com/topics/6').then(function (response) {
       $scope.topics = response.data
-      console.log($scope.topics)
     })
   }])

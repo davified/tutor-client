@@ -93,10 +93,10 @@ app/                    --> all of the source files for the application
     roadmap.html            --> the partial template
     roadmap.js              --> the controller logic
     roadmap_test.js         --> tests of the controller
-  view2/                --> the view2 view template and logic
-    view2.html            --> the partial template
-    view2.js              --> the controller logic
-    view2_test.js         --> tests of the controller
+  exercise/                --> the exercise view template and logic
+    exercise.html            --> the partial template
+    exercise.js              --> the controller logic
+    exercise_test.js         --> tests of the controller
   app.js                --> main application module
   index.html            --> app layout file (the main html template file of the app)
   index-async.html      --> just like index.html, but loads js files asynchronously

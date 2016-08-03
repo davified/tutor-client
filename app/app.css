@@ -32,3 +32,6 @@
 ol {
     list-style-type: upper-alpha;
   }
+
+/* adding these for angular-ui compatibility */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

@@ -6,11 +6,9 @@ angular.module('myApp', [
   'myApp.roadmap',
   'myApp.exercise',
   'myApp.version',
-  // 'ngAnimate',
-  // 'ngTouch',
-  // 'ui.bootstrap',
   'ngMaterial',
   'myApp.material',
   'color',
-  'popup'
+  'popup',
+  'materialForm'
 ])

@@ -35,3 +35,9 @@ ol {
 
 /* adding these for angular-ui compatibility */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/*for popups*/
+.edgePadding {
+  padding-left: 25px;
+  padding-right: 25px;
+}

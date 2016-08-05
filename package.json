@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "angular-animate": "^1.5.8",
+    "angular-material": "^1.1.0-rc.5",
     "angular-touch": "^1.5.8",
     "angular-ui-bootstrap": "^2.0.1",
     "bootstrap": "^3.3.7"

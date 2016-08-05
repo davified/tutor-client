@@ -10,10 +10,7 @@ angular.module('myApp', [
   // 'ngTouch',
   // 'ui.bootstrap',
   'ngMaterial',
-  'myApp.material'
-
-]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!')
-
-  $routeProvider.otherwise({redirectTo: '/roadmap'})
-}])
+  'myApp.material',
+  'color',
+  'popup'
+])

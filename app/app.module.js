@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.roadmap',
   'myApp.exercise',
+  'myApp.login',
   'myApp.version',
   'ngMaterial',
   'myApp.material',

@@ -42,6 +42,13 @@ ol {
   padding-right: 25px;
 }
 
+/* for detailed sign up form */
+.registrationDetail {
+  max-width: 60%;
+  margin: 0 auto;
+  background: black
+}
+
 /* for login */
 .loginBox {
   max-width:  90%;

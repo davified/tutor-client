@@ -41,3 +41,23 @@ ol {
   padding-left: 25px;
   padding-right: 25px;
 }
+
+/* for login */
+.loginBox {
+  max-width:  90%;
+  width: 500px
+}
+
+.stretch input  {
+  width: 100%
+}
+
+md-input-container#email {
+  margin-bottom: 0
+}
+
+/* for sidenav */
+md-list-item > button {
+  width:100%;
+  text-align: left !important
+}

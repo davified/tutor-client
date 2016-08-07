@@ -1,10 +1,11 @@
 'use strict'
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var myApp = angular.module('myApp', [
   'ngRoute',
   'myApp.roadmap',
   'myApp.exercise',
+  'myApp.exerciseOne',
   'myApp.login',
   'myApp.version',
   'ngMaterial',
@@ -13,3 +14,7 @@ angular.module('myApp', [
   'popup',
   'materialForm'
 ])
+
+// myApp.factory('getQuestions', function() {
+//
+// })

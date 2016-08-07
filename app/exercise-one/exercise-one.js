@@ -1,20 +1,18 @@
-angular.module('myApp.exercise', ['ngRoute'])
+angular.module('myApp.exerciseOne', ['ngRoute'])
 
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/exercise', {
-      templateUrl: 'exercise/exercise.html',
-      controller: 'exerciseCtrl'
+    $routeProvider.when('/exercise-one', {
+      templateUrl: 'exercise-one/exercise-one.html',
+      controller: 'ExerciseOneCtrl'
     })
   }])
 
-  .controller('exerciseCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+  .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$controller', function ($scope, $http, $routeParams) {
     $http.get('https://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
       $scope.questions = response.data.questions
       console.log(response.data)
     })
   }])
-
-  // need to inject popup function in exerciseCtrl
 
   .directive('drawing', function () {
   return {

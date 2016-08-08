@@ -5,21 +5,24 @@
     <md-toolbar class='md-hue-1'>
       <p class="md-toolbar-tools">LOG IN / SIGN UP</p>
     </md-toolbar>
-    <md-content layout="column" class="md-padding">
-      <md-input-container id="email">
-        <label>Email</label>
-        <input type="email" ng-model="email"/>
-      </md-input-container>
-      <md-input-container>
-        <label>Password</label>
-        <input type="password" ng-model="password"/>
-      </md-input-container>
-      <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary">Login</md-button>
-        <md-button class="md-raised md-primary">Sign Up</md-button>
-        <div flex="flex"></div>
-        <md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button>
-      </div>
-    </md-content>
+    
+    <form name="loginForm">
+      <md-content layout="column" class="md-padding">
+        <md-input-container id="email">
+          <label>Email</label>
+          <input type="email" ng-model="formData.email"/>
+        </md-input-container>
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" ng-model="formData.password"/>
+        </md-input-container>
+        <div layout="row" layout-align="center center">
+          <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+          <md-button class="md-raised md-primary">Sign Up</md-button>
+          <div flex="flex"></div>
+          <md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button>
+        </div>
+      </md-content>
+    </form>
   </div>
 </div>

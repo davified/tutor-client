@@ -6,16 +6,11 @@
 
     <!-- sidenav -->
     <div class="container" layout="row" flex>
-      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
-        <md-list>
+      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" >
+        <md-list ng-repeat='question in questions|limitTo: 7'>
           <md-list-item>
             <md-button>
-              yellow
-            </md-button>
-          </md-list-item>
-          <md-list-item>
-            <md-button>
-              black
+              {{question.subtopic}}
             </md-button>
           </md-list-item>
         </md-list>
@@ -29,15 +24,21 @@
           </div>
 
           <div layout="column" layout-align="center start" layout-padding="" flex="">
-            <div layout="column" ng-repeat='question in questions|limitTo: 2'>
+            <div layout="column" ng-repeat='question in questions|limitTo: 1'>
               {{$index + 1}}. {{question.question}}
-              <ol ng-hide="question.options.length === 0">
-                <li> {{question.options[0]}} </li>
-                <li> {{question.options[1]}} </li>
-                <li> {{question.options[2]}} </li>
-                <li> {{question.options[3]}} </li>
-              </ol>
               <br>
+
+              <md-radio-group ng-model="question.userAnswer" class="md-primary" ng-hide="question.options.length === 0">
+                  <md-radio-button ng-repeat="option in question.options"
+                                   value="option.value">
+                      {{ option }}
+                  </md-radio-button>
+              </md-radio-group>
+              <p>Your answer:{{ question.userAnswer }}</p>
+              <p>
+              <br>
+
+              <!-- canvas for non-mcq questions -->
               <div ng-show="question.options.length === 0">
                 <canvas width="500" height="300" id="canvas" drawing></canvas>
                 <br>
@@ -46,7 +47,7 @@
               </div>
             </div>
             <div class="dialog-demo-content" layout="column" layout-align="center center" style="width:100%">
-              <md-button class="md-primary md-raised edgePadding" ng-click="$ctrl.openFromLeft()">
+              <md-button class="md-primary md-raised edgePadding" ng-click="submitAnswer()">
                 Submit answer
               </md-button>
             </div>

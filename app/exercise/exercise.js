@@ -8,7 +8,7 @@ angular.module('myApp.exercise', ['ngRoute'])
   }])
 
   .controller('exerciseCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-    $http.get('https://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
+    $http.get('http://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
       $scope.questions = response.data.questions
       console.log(response.data)
     })

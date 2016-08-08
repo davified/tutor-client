@@ -24,19 +24,19 @@
           </div>
 
           <div layout="column" layout-align="center start" layout-padding="" flex="">
-            <div layout="column" ng-repeat='question in questions|limitTo: 1'>
-              {{$index + 1}}. {{question.question}}
+            <div layout="column">
+              {{$index + 1}}. {{currentQuestion.question}}
               <br>
 
-              <md-radio-group ng-model="question.userAnswer" class="md-primary" ng-hide="question.options.length === 0">
-                  <md-radio-button ng-repeat="option in question.options"
-                                   value="option.value">
-                      {{ option }}
-                  </md-radio-button>
-              </md-radio-group>
-              <p>Your answer:{{ question.userAnswer }}</p>
-              <p>
-              <br>
+              <form ng-submit="submit()" ng-cloak>
+                <md-radio-group ng-model="userAnswer" ng-hide="question.options.length === 0">
+                  <md-radio-button value="0" class="md-primary"> {{ currentQuestion.options[0] }} </md-radio-button>
+                  <md-radio-button value="1" class="md-primary"> {{ currentQuestion.options[1] }} </md-radio-button>
+                  <md-radio-button value="2" class="md-primary"> {{ currentQuestion.options[2] }}</md-radio-button>
+                  <md-radio-button value="3" class="md-primary"> {{ currentQuestion.options[3] }}</md-radio-button>
+                </md-radio-group>
+                <p>Your answer: <span class="radioValue">{{ userAnswer }}</span> </p>
+              </form>
 
               <!-- canvas for non-mcq questions -->
               <div ng-show="question.options.length === 0">
@@ -46,9 +46,16 @@
                 <br>
               </div>
             </div>
-            <div class="dialog-demo-content" layout="column" layout-align="center center" style="width:100%">
+            <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
+              <!-- temp -->
+              <md-button class="md-primary md-raised edgePadding" ng-click="showCurrentQuestion()">
+                show current question
+              </md-button>
               <md-button class="md-primary md-raised edgePadding" ng-click="submitAnswer()">
                 Submit answer
+              </md-button>
+              <md-button class="md-primary md-raised edgePadding" ng-click="showNextQuestion()">
+                next question
               </md-button>
             </div>
 

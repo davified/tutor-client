@@ -13,7 +13,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $mdIconProvider.icon('share', './svg/share.svg', 24)
     $mdIconProvider.icon('menu', './svg/menu.svg', 24)
   }])
-  .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', function ($scope, $http, $routeParams, $mdDialog, $mdToast, $mdSidenav) {
+  .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', '$window', function ($scope, $http, $routeParams, $mdDialog, $mdToast, $mdSidenav, $window) {
     $scope.toggleSideNav = function () {
       $mdSidenav('left').toggle()
     }
@@ -46,7 +46,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       if ($scope.userAnswer == $scope.currentQuestion.answer) {
         $scope.completedQuestionsSubmission.push({
           questionId: $scope.currentQuestion._id,
-          userId: '#',
+          userId: $window.localStorage.user_id,
           isCorrect: true,
           numberOfWrongAttempts: $scope.numberOfWrongAttempts,
           userAnswerImage: '#'
@@ -77,7 +77,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $mdDialog.alert()
           .clickOutsideToClose(true)
           .title($scope.correctMessageTitles[getRandomInt(0,99)].toUpperCase() + '!')
-          .textContent($scope.correctMessageBody[getRandomInt(0,7)])
+          .textContent($scope.correctMessageBody[getRandomInt(0,6)])
           .ariaLabel('correct answer!')
           .ok('Next question!')
           // You can specify either sting with query selector

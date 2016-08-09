@@ -1,4 +1,6 @@
-angular.module('myApp.exerciseOne', ['ngRoute'])
+/* global angular */
+
+angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/exercise-one', {
@@ -6,16 +8,35 @@ angular.module('myApp.exerciseOne', ['ngRoute'])
       controller: 'ExerciseOneCtrl'
     })
   }])
+  .config(['$mdIconProvider', function ($mdIconProvider) {
+    $mdIconProvider.defaultIconSet('./svg/avatars.svg', 128)
+    $mdIconProvider.icon('share', './svg/share.svg', 24)
+    $mdIconProvider.icon('menu', './svg/menu.svg', 24)
+  }])
 
-  .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$mdDialog', '$controller', function ($scope, $http, $routeParams, $mdDialog) {
+  .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', function ($scope, $http, $routeParams, $mdDialog, $mdToast, $mdSidenav) {
+    $scope.toggleSideNav = function () {
+      $mdSidenav('left').toggle()
+    }
+
     $scope.questions = []
+    $scope.currentQuestionIndex = 0
+    $scope.numberOfWrongAttempts = 0
+    $scope.CompletedQuestionsSubmission = []
+    $scope.correctMessageTitles = [
+      'ace', 'amazing', 'astonishing', 'astounding', 'awe-inspiring', 'awesome', 'badass', 'beautiful', 'bedazzling', "bee's knees", 'best', 'breathtaking', 'brilliant', "cat's meow", "cat's pajamas", 'classy', 'cool', 'dandy', 'dazzling', 'delightful', 'divine', 'doozie', 'epic', 'excellent', 'exceptional', 'exquisite', 'extraordinary', 'fabulous', 'fantastic', 'fantabulous', 'fine', 'finest', 'first-class', 'first-rate', 'flawless', 'funkadelic', 'geometric', 'glorious', 'gnarly', 'good', 'grand', 'great', 'groovy', 'groundbreaking', 'hunky-dory', 'impeccable', 'impressive', 'incredible', 'kickass', 'kryptonian', 'laudable', 'legendary', 'lovely', 'luminous', 'magnificent', 'majestic', 'marvelous', 'mathematical', 'mind-blowing', 'neat', 'outstanding', 'peachy', 'perfect', 'phenomenal', 'pioneering', 'polished', 'posh', 'praiseworthy', 'premium', 'priceless', 'prime', 'primo', 'rad', 'remarkable', 'riveting', 'scrumtrulescent', 'sensational', 'shining', 'slick', 'smashing', 'solid', 'spectacular', 'splendid', 'stellar', 'striking', 'stunning', 'stupendous', 'stylish', 'sublime', 'super', 'super-duper', 'super-excellent', 'superb', 'superior', 'supreme', 'sweet', 'swell', 'terrific', 'tiptop', 'top-notch', 'transcendent', 'tremendous', 'ultimate', 'unreal', 'well-made', 'wicked', 'wonderful', 'wondrous', 'world-class'
+    ]
+    $scope.correctMessageBody = ['You\'re on a roll!', 'Good job ninja. Keep going.', 'Well done mate.', 'Are you for real?', 'Keep it up Shinobi.', 'You\'re on your way to Samurai-hood.', 'Master of invisibility, you shall be.']
+
+    function getRandomInt (min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
 
     $http.get('https://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
       $scope.questions = response.data.questions
       console.log($scope.questions)
+      $scope.showCurrentQuestion()
     })
-
-    $scope.currentQuestionIndex = 0
 
     $scope.showCurrentQuestion = function () {
       $scope.currentQuestion = $scope.questions[$scope.currentQuestionIndex]
@@ -23,18 +44,66 @@ angular.module('myApp.exerciseOne', ['ngRoute'])
 
     $scope.submitAnswer = function () {
       if ($scope.userAnswer == $scope.currentQuestion.answer) {
-        console.log('correct!')
+        $scope.CompletedQuestionsSubmission.push({
+          questionId: $scope.currentQuestion._id,
+          userId: '#',
+          isCorrect: true,
+          numberOfWrongAttempts: $scope.numberOfWrongAttempts,
+          userAnswerImage: '#'
+        })
         $scope.showNextQuestion()
+        $scope.correctAnswerPopup()
       } else {
-        console.log($scope.currentQuestion.hints)
-        console.log($scope.currentQuestionIndex);
+        $scope.showSimpleToast()
+        $scope.numberOfWrongAttempts++
       }
     }
 
     $scope.showNextQuestion = function () {
       $scope.currentQuestionIndex++
+      $scope.numberOfWrongAttempts = 0
       $scope.currentQuestion = $scope.questions[$scope.currentQuestionIndex]
       $scope.userAnswer = null
+    }
+
+    $scope.correctAnswerPopup = function correctAnswerPopup () {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .clickOutsideToClose(true)
+          .title($scope.correctMessageTitles[getRandomInt(0,99)].toUpperCase() + '!')
+          .textContent($scope.correctMessageBody[getRandomInt(0,7)])
+          .ariaLabel('correct answer!')
+          .ok('Next question!')
+          // You can specify either sting with query selector
+          .openFrom('#left')
+          // or an element
+          .closeTo(angular.element(document.querySelector('#right')))
+      )
+    }
+
+    var last = {
+      bottom: true,
+      right: true
+    }
+    $scope.toastPosition = angular.extend({}, last)
+    $scope.getToastPosition = function () {
+      sanitizePosition()
+      return Object.keys($scope.toastPosition)
+        .filter(function (pos) { return $scope.toastPosition[pos]})
+        .join(' ')
+    }
+    function sanitizePosition () {
+      var current = $scope.toastPosition
+      last = angular.extend({}, current)
+    }
+    $scope.showSimpleToast = function () {
+      var pinTo = $scope.getToastPosition()
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent("That's not quite right. I'll give you a hint: " + $scope.currentQuestion.hints)
+          .position(pinTo)
+      // .hideDelay(3000)
+      )
     }
   }])
 
@@ -89,7 +158,7 @@ angular.module('myApp.exerciseOne', ['ngRoute'])
         })
 
         // canvas reset
-        function reset () {
+        function reset (scope, element, attrs) {
           element[0].width = element[0].width
         }
 

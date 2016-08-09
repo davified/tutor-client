@@ -1,88 +1,77 @@
-<p>This is the partial for the exercise-one:</p>
 
-  <body layout="column">
-    <md-toolbar><h1> Exercise: {{ }}</h1>
-    </md-toolbar>
+<body layout="column">
+  <md-toolbar layout="row">
+    <md-button class=menu ng-click='toggleSideNav()'>
+      <md-icon md-svg-icon="menu" ng-hide="$mdMedia('gt-sm')"></md-icon>
+    </md-button>
+    <h1> Exercise: {{ }}</h1>
+  </md-toolbar>
 
-    <!-- sidenav -->
-    <div class="container" layout="row" flex>
-      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" >
-        <md-list ng-repeat='question in questions|limitTo: 7'>
-          <md-list-item>
-            <md-button>
-              {{question.subtopic}}
-            </md-button>
-          </md-list-item>
-        </md-list>
-      </md-sidenav>
+  <!-- sidenav -->
+  <div class="container" layout="row" flex>
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left">
+      <md-list ng-repeat='question in questions | limitTo: 7 '>
+        <md-list-item>
+          <md-button ng-click='toggleSideNav()'>
+            {{question.subtopic}}
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
 
-      <!-- main content -->
-      <md-content id="content" flex>
-        <div layout="row" ng-cloak="" style="height: 300px" class="dialogdemoOpenFromCloseTo">
-          <div layout="column" layout-align="center center" style="background-color: #f2f2f2" class="md-padding">
-            <span id="left">left</span>
-          </div>
-
-          <div layout="column" layout-align="center start" layout-padding="" flex="">
-            <div layout="column">
-              {{$index + 1}}. {{currentQuestion.question}}
-              <br>
-
-              <form ng-submit="submit()" ng-cloak>
-                <md-radio-group ng-model="userAnswer" ng-hide="question.options.length === 0">
-                  <md-radio-button value="0" class="md-primary"> {{ currentQuestion.options[0] }} </md-radio-button>
-                  <md-radio-button value="1" class="md-primary"> {{ currentQuestion.options[1] }} </md-radio-button>
-                  <md-radio-button value="2" class="md-primary"> {{ currentQuestion.options[2] }}</md-radio-button>
-                  <md-radio-button value="3" class="md-primary"> {{ currentQuestion.options[3] }}</md-radio-button>
-                </md-radio-group>
-                <p>Your answer: <span class="radioValue">{{ userAnswer }}</span> </p>
-              </form>
-
-              <!-- canvas for non-mcq questions -->
-              <div ng-show="question.options.length === 0">
-                <canvas width="500" height="300" id="canvas" drawing></canvas>
-                <br>
-                Answer: <input type="text">
-                <br>
-              </div>
-            </div>
-            <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
-              <!-- temp -->
-              <md-button class="md-primary md-raised edgePadding" ng-click="showCurrentQuestion()">
-                show current question
-              </md-button>
-              <md-button class="md-primary md-raised edgePadding" ng-click="submitAnswer()">
-                Submit answer
-              </md-button>
-              <md-button class="md-primary md-raised edgePadding" ng-click="showNextQuestion()">
-                next question
-              </md-button>
-            </div>
-
-          </div>
-
-          <div layout="column" layout-align="center center" style="background-color: #f2f2f2" class="md-padding">
-            <span id="right">right</span>
-          </div>
+    <!-- main content -->
+    <md-content id="content" flex layout="column">
+      <div layout="row" ng-cloak="" class="dialogdemoOpenFromCloseTo" flex>
+        <div layout="column" layout-align="center center" style="background-color: #f2f2f2" class="md-padding">
+          <span id="left">left</span>
         </div>
 
-        <!--  looping through questions. -->
-        <!-- <div ng-repeat='question in questions|limitTo: 1'>
-          {{$index + 1}}. {{question.question}}
-          <ol ng-hide="question.options.length === 0">
-            <li> {{question.options[0]}} </li>
-            <li> {{question.options[1]}} </li>
-            <li> {{question.options[2]}} </li>
-            <li> {{question.options[3]}} </li>
-          </ol>
-          <br>
-          <div ng-show="question.options.length === 0">
-            <canvas width="500" height="300" id="canvas" drawing></canvas>
+        <div layout="column" layout-align="center start" layout-padding="" flex>
+          <div layout="column">
+            {{$index + 1}}. {{currentQuestion.question}}
             <br>
-            Answer: <input type="text">
-            <br>
+
+            <form ng-submit="submit()" ng-cloak>
+              <md-radio-group ng-model="userAnswer" ng-hide="currentQuestion.options.length === 0">
+                <md-radio-button value="0" class="md-primary"> {{ currentQuestion.options[0] }} </md-radio-button>
+                <md-radio-button value="1" class="md-primary"> {{ currentQuestion.options[1] }} </md-radio-button>
+                <md-radio-button value="2" class="md-primary"> {{ currentQuestion.options[2] }}</md-radio-button>
+                <md-radio-button value="3" class="md-primary"> {{ currentQuestion.options[3] }}</md-radio-button>
+              </md-radio-group>
+              <p>Your answer: <span class="radioValue"> {{ userAnswer }}</span> </p>
+            </form>
+
+            <!-- canvas for non-mcq questions -->
+            <div ng-show="currentQuestion.options.length === 0">
+              <canvas width="500" height="120" id="canvas" drawing></canvas>
+              <br>
+              Answer: <input type="text">
+              <br>
+            </div>
           </div>
-        </div> -->
-      </md-content>
-    </div>
-      </body>
+          <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
+            <!-- temp -->
+            <md-button class="md-primary md-raised edgePadding" ng-click="showCurrentQuestion()">
+              show current question
+            </md-button>
+            <md-button class="md-primary md-raised edgePadding" ng-click="submitAnswer()">
+              Submit answer
+            </md-button>
+            <md-button class="md-primary md-raised edgePadding" ng-click="showNextQuestion()">
+              next question
+            </md-button>
+            <md-button class="md-primary md-raised edgePadding resetCanvasButton" ng-click="reset()">
+              reset canvas
+            </md-button>
+          </div>
+
+        </div>
+
+        <div layout="column" layout-align="center center" style="background-color: #f2f2f2" class="md-padding">
+          <span id="right">right</span>
+        </div>
+      </div>
+
+    </md-content>
+  </div>
+</body>

@@ -10,7 +10,7 @@ angular.module('myApp.roadmap', ['ngRoute'])
   }])
 
   .controller('roadmapCtrl', ['$scope', 'httpFactory', function ($scope, httpFactory) {
-    var url = 'https://learning-ninja-api.herokuapp.com/topics/6'
+    var url = 'https://learning-ninja-api.herokuapp.com/levels/5'
 
     httpFactory.httpGet(url).then(function (response) {
       $scope.topics = response.data

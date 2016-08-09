@@ -7,7 +7,7 @@ angular.module('myApp.login', ['ngRoute'])
     })
   }])
 
-  .controller('loginCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('loginCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
     $scope.formData = {
       email: $scope.email,
@@ -17,6 +17,7 @@ angular.module('myApp.login', ['ngRoute'])
     $scope.login = function () {
       $http.post('https://learning-ninja-api.herokuapp.com/signin/', $scope.formData).then(function successCallback (response) {
         console.log('sign up success!', response)
+        $window.location.href = '/#!/material';
       }, function errorCallback (response) {
         console.log('sign up failed!', response)
       })

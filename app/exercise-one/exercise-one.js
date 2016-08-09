@@ -13,7 +13,6 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $mdIconProvider.icon('share', './svg/share.svg', 24)
     $mdIconProvider.icon('menu', './svg/menu.svg', 24)
   }])
-
   .controller('ExerciseOneCtrl', ['$scope', '$http', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', function ($scope, $http, $routeParams, $mdDialog, $mdToast, $mdSidenav) {
     $scope.toggleSideNav = function () {
       $mdSidenav('left').toggle()
@@ -22,7 +21,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $scope.questions = []
     $scope.currentQuestionIndex = 0
     $scope.numberOfWrongAttempts = 0
-    $scope.CompletedQuestionsSubmission = []
+    $scope.completedQuestionsSubmission = []
     $scope.correctMessageTitles = [
       'ace', 'amazing', 'astonishing', 'astounding', 'awe-inspiring', 'awesome', 'badass', 'beautiful', 'bedazzling', "bee's knees", 'best', 'breathtaking', 'brilliant', "cat's meow", "cat's pajamas", 'classy', 'cool', 'dandy', 'dazzling', 'delightful', 'divine', 'doozie', 'epic', 'excellent', 'exceptional', 'exquisite', 'extraordinary', 'fabulous', 'fantastic', 'fantabulous', 'fine', 'finest', 'first-class', 'first-rate', 'flawless', 'funkadelic', 'geometric', 'glorious', 'gnarly', 'good', 'grand', 'great', 'groovy', 'groundbreaking', 'hunky-dory', 'impeccable', 'impressive', 'incredible', 'kickass', 'kryptonian', 'laudable', 'legendary', 'lovely', 'luminous', 'magnificent', 'majestic', 'marvelous', 'mathematical', 'mind-blowing', 'neat', 'outstanding', 'peachy', 'perfect', 'phenomenal', 'pioneering', 'polished', 'posh', 'praiseworthy', 'premium', 'priceless', 'prime', 'primo', 'rad', 'remarkable', 'riveting', 'scrumtrulescent', 'sensational', 'shining', 'slick', 'smashing', 'solid', 'spectacular', 'splendid', 'stellar', 'striking', 'stunning', 'stupendous', 'stylish', 'sublime', 'super', 'super-duper', 'super-excellent', 'superb', 'superior', 'supreme', 'sweet', 'swell', 'terrific', 'tiptop', 'top-notch', 'transcendent', 'tremendous', 'ultimate', 'unreal', 'well-made', 'wicked', 'wonderful', 'wondrous', 'world-class'
     ]
@@ -32,7 +31,8 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    $http.get('https://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
+    // $http.get('https://learning-ninja-api.herokuapp.com/exercises/').then(function (response) {
+    $http.get('https://learning-ninja-api.herokuapp.com/levels/5/exercises/fractions').then(function (response) {
       $scope.questions = response.data.questions
       console.log($scope.questions)
       $scope.showCurrentQuestion()
@@ -44,7 +44,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
 
     $scope.submitAnswer = function () {
       if ($scope.userAnswer == $scope.currentQuestion.answer) {
-        $scope.CompletedQuestionsSubmission.push({
+        $scope.completedQuestionsSubmission.push({
           questionId: $scope.currentQuestion._id,
           userId: '#',
           isCorrect: true,
@@ -57,6 +57,12 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $scope.showSimpleToast()
         $scope.numberOfWrongAttempts++
       }
+    }
+
+    $scope.submitExercise = function() {
+      $http.post('http://localhost:3000/submit', $scope.completedQuestionsSubmission)
+      // $http.post('https://learning-ninja-api.herokuapp.com/submit', $scope.completedQuestionsSubmission)
+      console.log($scope.completedQuestionsSubmission);
     }
 
     $scope.showNextQuestion = function () {
@@ -85,6 +91,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       bottom: true,
       right: true
     }
+
     $scope.toastPosition = angular.extend({}, last)
     $scope.getToastPosition = function () {
       sanitizePosition()

@@ -3,7 +3,7 @@
 angular.module('materialForm', ['ngMaterial', 'ngMessages'])
   .component('materialForm', {
     templateUrl: 'components/material-form/material-form.template.html',
-    controller: ['$mdMedia', '$http', function MaterialFormCtrl ($mdMedia, $http) {
+    controller: ['$mdMedia', '$http', '$window', function MaterialFormCtrl ($mdMedia, $http, $window) {
       var self = this
       self.$mdMedia = $mdMedia
       self.user = {
@@ -35,6 +35,7 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
       self.signUp = function () {
         $http.post('https://learning-ninja-api.herokuapp.com/signup/', self.user).then(function successCallback (response) {
           console.log('sign up success!', response)
+          $window.location.href = '/#!/roadmap';
         }, function errorCallback (response) {
           console.log('sign up failed!', response)
         })

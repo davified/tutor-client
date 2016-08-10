@@ -18,4 +18,4 @@ angular.module('myApp').config(['$locationProvider', '$routeProvider', function 
   .accentPalette('purple', {
     'default': '200' // use shade 200 for default, and keep all other shades the same
   });
-});
+})

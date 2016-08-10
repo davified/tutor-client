@@ -8,7 +8,6 @@ angular.module('myApp.login', ['ngRoute'])
   }])
 
   .controller('loginCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
-
     $scope.formData = {
       email: $scope.email,
       password: $scope.password

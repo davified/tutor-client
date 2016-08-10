@@ -10,7 +10,8 @@ var myApp = angular.module('myApp', [
   'myApp.version',
   'ngMaterial',
   'myApp.material',
-  'color',
+
+  // components
   'popup',
   'materialForm'
 ])

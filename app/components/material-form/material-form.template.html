@@ -25,12 +25,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Email</label>
-            <input ng-model="$ctrl.user.email">
+            <input ng-model="$ctrl.user.email" disabled>
           </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Password</label>
-            <input ng-model="$ctrl.user.password">
-          </md-input-container>
+          <md-datepicker class="md-block" flex-gt-sm ng-model="$ctrl.user.birthday" md-placeholder="Birthday">
+          </md-datepicker>
         </div>
 
         <div layout-gt-xs="row">
@@ -38,14 +36,12 @@
             <label>School</label>
             <input ng-model="$ctrl.user.school">
           </md-input-container>
-          <md-input-container>
+          <md-input-container flex-gt-xs>
             <label>Current education level</label>
-            <md-select ng-model="$ctrl.levels">
-              <md-option ng-repeat="level in $ctrl.levels" value="{{level}}" ng-model="$ctrl.user.level">{{level}}</md-option>
+            <md-select ng-model="$ctrl.user.level">
+              <md-option ng-repeat="level in $ctrl.levels">{{level}}</md-option>
             </md-select>
           </md-input-container>
-          <md-datepicker class="md-block" flex-gt-sm ng-model="$ctrl.user.birthday" md-placeholder="Birthday">
-          </md-datepicker>
         </div>
 
         <div layout-gt-sm="row">
@@ -72,7 +68,8 @@
           <label>Tell us something interesting about yourself!</label>
           <textarea ng-model="$ctrl.user.aboutMe" md-maxlength="150" rows="5" md-select-on-focus></textarea>
         </md-input-container>
-        <md-button ng-click="$ctrl.signUp()" class="md-raised md-primary">Sign me up!</md-button>
+        <md-button ng-click="$ctrl.submit()" class="md-raised md-primary">Sign me up!</md-button>
+        <md-button ng-click="$ctrl.test()" class="md-raised md-primary">test!</md-button>
       </form>
     </div>
   </md-content>

@@ -8,7 +8,13 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-messages/angular-messages.min.js',
       'components/**/*.js',
+      '**/*.spec.js',
       'view*/**/*.js'
     ],
 

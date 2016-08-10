@@ -1,6 +1,6 @@
 <p>This is the partial for the roadmap:</p>
 
-
+<h1>Welcome {{ninjaName}}</h1>
 <div class="container" layout="column" flex>
     <md-list ng-repeat='topic in topics'>
       <md-list-item>
@@ -12,3 +12,10 @@
       </md-list-item>
     </md-list>
 <ul>
+
+  <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
+    <!-- temp -->
+    <md-button class="md-primary md-raised edgePadding" ng-click="showLocalStorage()">
+      show local storage
+    </md-button>
+  </div>

@@ -14,7 +14,14 @@ var myApp = angular.module('myApp', [
   // components
   'popup',
   'materialForm'
-])
+]).controller('AppCtrl', function($scope) {
+      $scope.isOpen = false;
+      $scope.demo = {
+        isOpen: false,
+        count: 0,
+        selectedDirection: 'left'
+      };
+    });
 
 // myApp.factory('getQuestions', function() {
 //

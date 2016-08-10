@@ -17,13 +17,31 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#!/login">login</a></li>
-    <li><a href="#!/material">sign-up form</a></li>
-    <li><a href="#!/roadmap">roadmap</a></li>
-    <li><a href="#!/exercise">exercise</a></li>
-    <li><a href="#!/exercise-one">exercise-one</a></li>
-  </ul>
+  <!-- <div>
+    <md-button><a href="#!/login">login</a></md-button>
+    <md-button><a href="#!/material">sign-up form</a></md-button>
+    <md-button><a href="#!/roadmap">roadmap</a></md-button>
+    <md-button><a href="#!/exercise">exercise</a></md-button>
+    <md-button><a href="#!/exercise-one">exercise-one</a></md-button>
+  </div> -->
+
+  <md-fab-toolbar md-open="demo.isOpen" count="demo.count"
+                 md-direction="left">
+     <md-fab-trigger class="align-with-text">
+       <md-button aria-label="menu" class="md-fab md-primary">
+         <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+       </md-button>
+     </md-fab-trigger>
+     <md-toolbar>
+       <md-fab-actions class="md-toolbar-tools">
+         <md-button><a href="#!/login">login</a></md-button>
+         <md-button><a href="#!/material">sign-up form</a></md-button>
+         <md-button><a href="#!/roadmap">roadmap</a></md-button>
+         <md-button><a href="#!/exercise">exercise</a></md-button>
+         <md-button><a href="#!/exercise-one">exercise-one</a></md-button>
+       </md-fab-actions>
+     </md-toolbar>
+   </md-fab-toolbar>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

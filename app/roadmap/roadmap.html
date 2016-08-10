@@ -1,6 +1,10 @@
 <p>This is the partial for the roadmap:</p>
 
-<h1>Welcome {{ninjaName}}</h1>
+<div layout="row">
+  <md-icon md-svg-src="svg/avatar-1.svg" class="avatar"></md-icon>
+  <h1>Welcome {{ninjaName}}</h1>
+</div>
+
 <div class="container" layout="column" flex>
     <md-list ng-repeat='topic in topics'>
       <md-list-item>

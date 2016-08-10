@@ -1,11 +1,12 @@
 
 <body layout="column">
-  <md-toolbar layout="row">
-    <md-button class=menu ng-click='toggleSideNav()'>
+  <!-- <md-toolbar layout="row"> -->
+
+    <!-- <md-button class=menu ng-click='toggleSideNav()'>
       <md-icon md-svg-icon="menu" ng-hide="$mdMedia('gt-sm')"></md-icon>
-    </md-button>
-    <h1> Exercise: {{ }}</h1>
-  </md-toolbar>
+    </md-button> -->
+    <!-- <h1> Exercise: {{ }}</h1>
+  </md-toolbar> -->
 
   <!-- sidenav -->
   <div class="container" layout="row" flex>
@@ -45,23 +46,16 @@
             <div ng-show="currentQuestion.options.length === 0">
               <canvas width="500" height="120" id="canvas" drawing></canvas>
               <br>
-              Answer: <input type="text">
+              Answer: <input type="text" ng-model="userAnswer">
               <br>
             </div>
           </div>
           <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
-            <!-- temp -->
-            <md-button class="md-primary md-raised edgePadding" ng-click="showCurrentQuestion()">
-              show current question
-            </md-button>
             <md-button class="md-primary md-raised edgePadding" ng-click="submitAnswer()">
               Submit answer
             </md-button>
-            <md-button class="md-primary md-raised edgePadding" ng-click="showNextQuestion()">
-              next question
-            </md-button>
-            <md-button class="md-primary md-raised edgePadding" ng-click="submitExercise()">
-              submit exercise
+            <md-button class="md-primary md-raised edgePadding" ng-click="showTabDialog()">
+              show popup
             </md-button>
           </div>
 
@@ -72,6 +66,7 @@
         </div>
       </div>
 
+      
     </md-content>
   </div>
 </body>

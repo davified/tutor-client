@@ -6,18 +6,6 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
     controller: ['$mdMedia', '$http', '$window', function MaterialFormCtrl ($mdMedia, $http, $window) {
       var self = this
       self.$mdMedia = $mdMedia
-      self.user = {
-        firstName: '',
-        lastName: '',
-        ninjaName: '',
-        email: $window.localStorage.email,
-        school: '',
-        address: '',
-        postalCode: '',
-        birthday: '', // date
-        level: '',
-        aboutMe: ''
-      },
       self.levels = [
         '',
         'Primary 1',
@@ -33,11 +21,46 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
         'Secondary 5'
       ]
 
+      if ($window.localStorage.ninjaName === '') {
+        self.user = {
+          firstName: '',
+          lastName: '',
+          ninjaName: '',
+          email: $window.localStorage.email,
+          school: '',
+          address: '',
+          postalCode: '',
+          birthday: '', // date
+          level: '',
+          aboutMe: ''
+        }} else {
+          self.user = {
+            firstName: $window.localStorage.firstName,
+            lastName: $window.localStorage.lastName,
+            ninjaName: $window.localStorage.ninjaName,
+            email: $window.localStorage.email,
+            school: $window.localStorage.school,
+            address: $window.localStorage.address,
+            postalCode: $window.localStorage.postalCode,
+            birthday: $window.localStorage.birthday, // date
+            level: self.levels[$window.localStorage.level],
+            aboutMe: $window.localStorage.aboutMe
+          }
+        }
+
+
       self.submit = function () {
         $http.put('https://learning-ninja-api.herokuapp.com/edit-user', self.user)
         $window.location.href = '/#!/roadmap'
         $window.localStorage.level = self.levels.indexOf(self.user.level)
         $window.localStorage.ninjaName = self.user.ninjaName
+        $window.localStorage.firstName = self.user.firstName
+        $window.localStorage.lastName = self.user.lastName
+        $window.localStorage.school = self.user.school
+        $window.localStorage.address = self.user.address
+        $window.localStorage.postalCode = self.user.postalCode
+        $window.localStorage.birthday = self.user.birthday
+        $window.localStorage.aboutMe = self.user.aboutMe
       }
 
       self.signUp = function () {

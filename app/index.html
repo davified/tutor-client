@@ -36,10 +36,10 @@
        <md-fab-actions class="md-toolbar-tools" ng-controller="AppCtrl">
          <md-button ng-show="!userIsLoggedIn"><a href="#!/login">login</a></md-button>
          <md-button ng-show="userIsLoggedIn" ng-click="logout()"><a href="#!/login">logout</a></md-button>
-         <md-button><a href="#!/material">sign-up form</a></md-button>
-         <md-button><a href="#!/roadmap">roadmap</a></md-button>
-         <md-button><a href="#!/exercise">exercise</a></md-button>
-         <md-button><a href="#!/exercise-one">exercise-one</a></md-button>
+         <md-button ng-show="userIsLoggedIn"><a href="#!/material">edit account</a></md-button>
+         <md-button ng-show="userIsLoggedIn"><a href="#!/roadmap">roadmap</a></md-button>
+         <md-button ng-show="userIsLoggedIn"><a href="#!/exercise">exercise</a></md-button>
+         <md-button ng-show="userIsLoggedIn"><a href="#!/exercise-one">exercise-one</a></md-button>
        </md-fab-actions>
      </md-toolbar>
    </md-fab-toolbar>

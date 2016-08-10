@@ -16,7 +16,11 @@ angular.module('myApp.login', ['ngRoute'])
     $scope.login = function () {
       $http.post('https://learning-ninja-api.herokuapp.com/signin/', $scope.formData).then(function successCallback (response) {
         console.log('login success!', response)
-        $window.location.href = '/#!/material'
+        if (response.data.user.ninjaName) {
+          $window.location.href = '/#!/roadmap'
+        } else {
+          $window.location.href = '/#!/material'
+        }
         $window.localStorage.email = response.data.user.email
         $window.localStorage.auth_token = response.data.user.auth_token
         $window.localStorage.user_id = response.data.user._id

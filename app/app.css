@@ -79,6 +79,17 @@ md-list-item > button {
   padding-top: 10%
 }
 
+div#roadmap {
+  background-image: url('http://www.spriteland.com/sprites/downloads/night-background_SVG.svg');
+  background-size: cover;
+  background-position: center top;
+  /*height: 55vw;*/
+}
+
+div#roadmap > * {
+  color: white
+}
+
 /* for navbar */
 .fabToolbardemoBasicUsage md-fab-toolbar.md-right md-fab-trigger.align-with-text {
   left: 7px

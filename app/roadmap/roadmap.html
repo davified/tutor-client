@@ -1,20 +1,29 @@
-<div layout="row">
-  <md-icon md-svg-src="svg/avatar-1.svg" class="avatar"></md-icon>
-  <h1>Welcome {{ninjaName}}</h1>
-</div>
-
-<div class="container" layout="column" flex>
-    <md-list ng-repeat='topic in topics'>
-      <md-list-item>
-        <a href="#!/exercise-one" style="color: black">
-          <md-button>
-            {{topic}}
-          </md-button>
-        </a>
-      </md-list-item>
-    </md-list>
-<ul>
-
-  <div class="dialog-demo-content" layout="row" layout-align="center center" style="width:100%">
-    <!-- temp -->
+<div id="roadmap">
+  <div layout="row">
+    <md-icon md-svg-src="svg/avatar-1.svg" class="avatar"></md-icon>
+    <h1>Welcome {{ninjaName}}</h1>
   </div>
+
+
+
+  <div layout="row" layout-align="center center">
+    <div>
+      <md-list ng-repeat='topic in topics'>
+        <md-list-item style="margin: 0px">
+          <!-- <a href="#!/exercise-one" style="color: black"> -->
+            <md-button>
+              <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
+            </md-button>
+          <!-- </a> -->
+        </md-list-item>
+      </md-list>
+    </div>
+    <h2 layout="row" layout-align="center center" style="width:100%">
+      We have a mission for you.
+      <br><br>
+      To defeat the Oyabun (the boss).
+      <br><br>
+      Finish all the missions on the left to collect the necessary items for your final face-off. <br>
+    </h2>
+  </div>
+</div>

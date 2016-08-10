@@ -34,7 +34,7 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
       ]
 
       self.submit = function () {
-        $http.put('http://localhost:3000/edit-user', self.user)
+        $http.put('https://learning-ninja-api.herokuapp.com/edit-user', self.user)
         $window.location.href = '/#!/roadmap'
         $window.localStorage.level = self.levels.indexOf(self.user.level)
         $window.localStorage.ninjaName = self.user.ninjaName

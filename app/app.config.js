@@ -4,7 +4,7 @@
 angular.module('myApp').config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!')
 
-  $routeProvider.otherwise({redirectTo: '/roadmap'})
+  $routeProvider.otherwise({redirectTo: '/login'})
 }]).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
   .primaryPalette('teal', {

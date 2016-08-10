@@ -75,12 +75,21 @@ md-list-item > button {
 
 #loginpage {
   background-image: url('http://www.jvzoolaunch.com/wp-content/uploads/2016/04/2.gif');
-  height: 55vw
+  height: 55vw;
+  padding-top: 10%
 }
 
 /* for navbar */
 .fabToolbardemoBasicUsage md-fab-toolbar.md-right md-fab-trigger.align-with-text {
-  left: 7px; }
+  left: 7px
+}
+
+md-fab-toolbar.navbar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%
+}
 
 /* for circular avatar icons */
 .avatar {

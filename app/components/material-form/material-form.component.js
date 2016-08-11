@@ -3,9 +3,8 @@
 angular.module('materialForm', ['ngMaterial', 'ngMessages'])
   .component('materialForm', {
     templateUrl: 'components/material-form/material-form.template.html',
-    controller: ['$mdMedia', '$http', '$window', function MaterialFormCtrl ($mdMedia, $http, $window) {
+    controller: ['$http', '$window', function MaterialFormCtrl ($http, $window) {
       var self = this
-      self.$mdMedia = $mdMedia
       self.levels = [
         '',
         'Primary 1',
@@ -47,7 +46,6 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
             aboutMe: $window.localStorage.aboutMe
           }
         }
-
 
       self.submit = function () {
         $http.put('https://learning-ninja-api.herokuapp.com/edit-user', self.user)

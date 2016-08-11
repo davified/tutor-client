@@ -26,6 +26,14 @@ angular.module('myApp.login', ['ngRoute'])
         $window.localStorage.user_id = response.data.user._id
         $window.localStorage.level = response.data.user.level
         $window.localStorage.ninjaName = response.data.user.ninjaName
+        $window.localStorage.firstName = response.data.user.firstName
+        $window.localStorage.lastName = response.data.user.lastName
+        $window.localStorage.school = response.data.user.school
+        $window.localStorage.address = response.data.user.address
+        $window.localStorage.postalCode = response.data.user.postalCode
+        $window.localStorage.birthday = response.data.user.birthday
+        $window.localStorage.level = response.data.user.level
+        $window.localStorage.aboutMe = response.data.user.aboutMe
         location.reload()
       }, function errorCallback (response) {
         console.log('login failed!', response)

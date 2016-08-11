@@ -70,7 +70,9 @@ md-input-container#email {
 /* for sidenav */
 md-list-item > button {
   width:100%;
-  text-align: left !important
+  text-align: left !important;
+  padding: 0;
+  margin: 0
 }
 
 #loginpage {
@@ -80,31 +82,37 @@ md-list-item > button {
   padding-bottom: 15%
 }
 
-@media (max-width: 800px) {
-  #loginpage {
-    height: 100vw;
-  }
-}
 
-@media (max-width: 600px) {
-  #loginpage {
-    height: 150vw;
-  }
-}
 
 div#roadmap {
   background-image: url('http://www.spriteland.com/sprites/downloads/night-background_SVG.svg');
   background-size: cover;
   background-position: center top;
-  /*height: 55vw;*/
+  height: 55vw;
 }
 
 div#roadmap > * {
   color: white
 }
 
+h2#welcome {
+  padding-left: 5%
+}
+
 md-sidenav#sidenav {
-  background: transparent;
+  background: rgba(255,255,255,0.5)
+  /*opacity: 0.5*/
+}
+
+/* for exercise */
+div#exercise {
+  margin-top: 70px
+}
+
+div#exercise-count {
+  display: block !important;
+  text-align: right;
+
 }
 
 /* for navbar */
@@ -152,3 +160,16 @@ md-fab-toolbar.navbar {
   color: #c60008; }
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
   margin-bottom: 0; }
+
+
+  @media (max-width: 800px) {
+    #loginpage {
+      height: 100vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #loginpage {
+      height: 150vw;
+    }
+  }

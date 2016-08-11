@@ -1,26 +1,24 @@
 <div id="roadmap">
   <div layout="row">
+    <md-button class="menu" hide-gt-sm ng-click="toggleList()" aria-label="Show User List">
+      <md-icon md-svg-icon="menu" ></md-icon>
+    </md-button>
     <md-icon md-svg-src="svg/avatar-1.svg" class="avatar" style="height:100px; width: 100px"></md-icon>
     <h1>Welcome {{ninjaName}}</h1>
   </div>
 
-
   <div class="container" layout="row" flex>
-    <md-sidenav md-is-locked-open=true class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
-      <md-list ng-repeat='topic in topics'>
-        <md-list-item style="margin: 0px">
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
+        <md-list-item ng-repeat='topic in topics'>
             <md-button>
               <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
             </md-button>
-          <!-- </a> -->
         </md-list-item>
-      </md-list>
     </md-sidenav>
 
     <div layout="row" layout-align="center center" style="width:100%">
 
-
-      <h2>
+      <h2 id="welcome">
         <br><br><br><br><br><br><br>
         We have a mission for you.
         <br><br>
@@ -29,10 +27,11 @@
         Finish all the missions on the left to collect the necessary items for your final face-off.
         <br><br>
 
-        <md-button style="float: right; color: grey; background: white; opacity: 0.5; padding: 0px 20px"><a href="#!/exercise-one" style="text-decoration: none; color: grey">
-          <h1>I'M READY. LET'S DO THIS</h1>
-          </a>
-        </md-button>
+        <a href="#!/exercise-one" style="text-decoration: none; color: grey">
+          <md-button style="float: right; color: grey; background: white; opacity: 0.5; padding: 0px 20px">
+            <h1> LET'S DO THIS →  </h1>
+          </md-button>
+        </a>
       </h2>
     </div>
 

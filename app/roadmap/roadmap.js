@@ -9,16 +9,16 @@ angular.module('myApp.roadmap', ['ngRoute'])
     })
   }])
 
-  .controller('roadmapCtrl', ['$scope', 'httpFactory', '$window', function ($scope, httpFactory, $window) {
-    var url = 'https://learning-ninja-api.herokuapp.com/levels/5'
+  .controller('roadmapCtrl', ['$scope', 'httpFactory', '$window', '$mdSidenav', function ($scope, httpFactory, $window, $mdSidenav) {
+    var url = 'https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level
 
     httpFactory.httpGet(url).then(function (response) {
       $scope.topics = response.data
     })
 
-    $scope.showLocalStorage = function () {
-      console.log($window.localStorage);
-    }
-
     $scope.ninjaName = $window.localStorage.ninjaName
+
+    $scope.toggleList = function () {
+      $mdSidenav('left').toggle()
+    }
   }])

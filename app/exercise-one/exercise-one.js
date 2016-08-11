@@ -18,25 +18,30 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       $mdSidenav('left').toggle()
     }
 
-    $scope.questions = []
-    $scope.currentQuestionIndex = 0
-    $scope.numberOfWrongAttempts = 0
-    $scope.completedQuestionsSubmission = []
-    $scope.currentTopicIndex = 0
     $scope.correctMessageTitles = [
       'ace', 'amazing', 'astonishing', 'astounding', 'awe-inspiring', 'awesome', 'badass', 'beautiful', 'bedazzling', "bee's knees", 'best', 'breathtaking', 'brilliant', 'oh dang', "cat's pajamas", 'classy', 'cool', 'dandy', 'dazzling', 'delightful', 'divine', 'doozie', 'epic', 'excellent', 'exceptional', 'exquisite', 'extraordinary', 'fabulous', 'fantastic', 'fantabulous', 'fine', 'finest', 'first-class', 'first-rate', 'flawless', 'funkadelic', 'geometric', 'glorious', 'gnarly', 'good', 'grand', 'great', 'groovy', 'groundbreaking', 'hunky-dory', 'impeccable', 'impressive', 'incredible', 'kickass', 'kryptonian', 'laudable', 'legendary', 'lovely', 'luminous', 'magnificent', 'majestic', 'marvelous', 'mathematical', 'mind-blowing', 'neat', 'outstanding', 'peachy', 'perfect', 'phenomenal', 'pioneering', 'polished', 'posh', 'praiseworthy', 'premium', 'priceless', 'prime', 'primo', 'rad', 'remarkable', 'riveting', 'scrumtrulescent', 'sensational', 'shining', 'slick', 'smashing', 'solid', 'spectacular', 'splendid', 'stellar', 'striking', 'stunning', 'stupendous', 'stylish', 'sublime', 'super', 'super-duper', 'super-excellent', 'superb', 'superior', 'supreme', 'sweet', 'swell', 'terrific', 'tiptop', 'top-notch', 'transcendent', 'tremendous', 'ultimate', 'unreal', 'well-made', 'wicked', 'wonderful', 'wondrous', 'world-class'
     ]
     $scope.correctMessageBody = ["You're on a roll!", 'Good job ninja. Keep going.', 'Well done mate.', 'Are you for real?', 'Keep it up Shinobi.', "You're on your way to Samurai-hood.", 'Master of invisibility, you shall be.']
-    var url = 'https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level
 
-    httpFactory.httpGet(url).then(function (response) {
-      $scope.topics = response.data
-      $scope.currentTopic = $scope.topics[$scope.currentTopicIndex]
-      $http.get('https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level + '/exercises/' + $scope.currentTopic).then(function (response) {
-        $scope.questions = response.data.questions
-        $scope.showCurrentQuestion()
+    $scope.currentTopicIndex = 0
+
+    var url = 'https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level
+    $scope.loadExercise = function() {
+      console.log('new exercise loaded');
+      httpFactory.httpGet(url).then(function (response) {
+        $scope.questions = []
+        $scope.currentQuestionIndex = 0
+        $scope.numberOfWrongAttempts = 0
+        $scope.completedQuestionsSubmission = []
+        $scope.topics = response.data
+        $scope.topicsLength = response.data.length
+        $scope.currentTopic = $scope.topics[$scope.currentTopicIndex]
+        $http.get('https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level + '/exercises/' + $scope.currentTopic).then(function (response) {
+          $scope.questions = response.data.questions
+          $scope.showCurrentQuestion()
+        })
       })
-    })
+    }
 
     function getRandomInt (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min
@@ -69,7 +74,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $scope.submitExercise = function () {
       $http.post('https://learning-ninja-api.herokuapp.com/submit', $scope.completedQuestionsSubmission)
       console.log($scope.completedQuestionsSubmission)
-      $window.location.href = '/#!/roadmap'
+      $scope.currentTopicIndex++
     }
 
     $scope.showNextQuestion = function () {
@@ -80,18 +85,38 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     }
 
     $scope.correctAnswerPopup = function correctAnswerPopup () {
-      $mdDialog.show(
-        $mdDialog.alert()
-          .clickOutsideToClose(true)
-          .title($scope.correctMessageTitles[getRandomInt(0, 99)].toUpperCase() + '!')
-          .textContent($scope.correctMessageBody[getRandomInt(0, 6)])
-          .ariaLabel('correct answer!')
-          .ok('Next question!')
-          // You can specify either sting with query selector
-          .openFrom('#left')
-          // or an element
-          .closeTo(angular.element(document.querySelector('#right')))
-      )
+      if ($scope.currentQuestionIndex === $scope.questions.length) {
+        $mdDialog.show(
+          $mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('DONE!')
+            .textContent('Do you want to continue to your next Mission?')
+            .ariaLabel('Completed exercise!')
+            .ok('Bring it on!')
+            .cancel('Nope. Bring me back to the roadmap')
+            // You can specify either sting with query selector
+            .openFrom('#left')
+            // or an element
+            .closeTo(angular.element(document.querySelector('#right')))).then(function () {
+
+              $scope.loadExercise()
+            }, function () {
+
+              $window.location.href = '/#!/roadmap'
+            })
+      } else {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title($scope.correctMessageTitles[getRandomInt(0, 99)].toUpperCase() + '!')
+            .textContent($scope.correctMessageBody[getRandomInt(0, 6)])
+            .ariaLabel('correct answer!')
+            .ok('Next question!')
+            // You can specify either sting with query selector
+            .openFrom('#left')
+            // or an element
+            .closeTo(angular.element(document.querySelector('#right')))
+        )}
     }
 
     var last = {
@@ -119,6 +144,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       // .hideDelay(3000)
       )
     }
+    $scope.loadExercise()
   }])
 
   .directive('drawing', function () {

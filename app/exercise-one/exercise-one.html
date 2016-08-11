@@ -8,9 +8,10 @@
 
         <div layout="column" layout-align="center start" layout-padding="" id="exercise" flex>
           <div style="display: block; text-align: right; width: 100%">
-            Topic: {{currentTopic}} | Current question: {{currentQuestionIndex}} out of {{questions.length}}
+            Topic: {{currentTopic}} ({{currentTopicIndex}} / {{topicsLength}}) | Current question: {{currentQuestionIndex}} out of {{questions.length}}
           </div>
-          {{$index + 1}}. {{currentQuestion.question}}
+          <md-progress-linear md-mode="determinate" value="{{currentTopicIndex * 10}}"></md-progress-linear>
+          {{currentQuestionIndex + 1}}. {{currentQuestion.question}}
           <br>
 
           <form ng-submit="submit()" ng-cloak>

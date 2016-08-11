@@ -8,6 +8,7 @@ angular.module('myApp.login', ['ngRoute'])
   }])
 
   .controller('loginCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+    if ($window.localStorage.auth_token) $window.location.href = '/#!/roadmap'
     $scope.formData = {
       email: $scope.email,
       password: $scope.password

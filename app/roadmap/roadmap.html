@@ -1,24 +1,24 @@
 <div id="roadmap">
   <div layout="row">
-    <md-icon md-svg-src="svg/avatar-1.svg" class="avatar"></md-icon>
+    <md-icon md-svg-src="svg/avatar-1.svg" class="avatar" style="height:100px; width: 100px"></md-icon>
     <h1>Welcome {{ninjaName}}</h1>
   </div>
 
 
-
-  <div layout="row" layout-align="center center">
-    <div>
+  <div class="container" layout="row" flex>
+    <md-sidenav md-is-locked-open=true class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
       <md-list ng-repeat='topic in topics'>
         <md-list-item style="margin: 0px">
-          <!-- <a href="#!/exercise-one" style="color: black"> -->
             <md-button>
               <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
             </md-button>
           <!-- </a> -->
         </md-list-item>
       </md-list>
-    </div>
+    </md-sidenav>
+
     <div layout="row" layout-align="center center" style="width:100%">
+
 
       <h2>
         <br><br><br><br><br><br><br>

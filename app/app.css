@@ -75,8 +75,21 @@ md-list-item > button {
 
 #loginpage {
   background-image: url('http://www.jvzoolaunch.com/wp-content/uploads/2016/04/2.gif');
-  height: 55vw;
-  padding-top: 10%
+  height: 40vw;
+  padding-top: 15%;
+  padding-bottom: 15%
+}
+
+@media (max-width: 800px) {
+  #loginpage {
+    height: 100vw;
+  }
+}
+
+@media (max-width: 600px) {
+  #loginpage {
+    height: 150vw;
+  }
 }
 
 div#roadmap {
@@ -88,6 +101,10 @@ div#roadmap {
 
 div#roadmap > * {
   color: white
+}
+
+md-sidenav#sidenav {
+  background: transparent;
 }
 
 /* for navbar */

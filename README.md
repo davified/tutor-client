@@ -7,10 +7,10 @@ This repo contains server-side code for Learning Ninja, which is an app that mak
 The app hopes to:
 
 - make learning math fun and addictive through gamification
-- maximise learning by engaging both the left brain (words and logic) and the right brain (visuals and imagination) of the student
-- provide unlimited quests and questions for topics covered by PSLE, 'O' and 'N levels'
-- provide immediate feedback on what a student knows/doesn't know
-- encourage actively learning through guided hints
+- maximise learning by engaging both the left brain (logic and words) and the right brain (imagination and visuals)
+- provide unlimited quests and questions on topics covered by PSLE, 'O' and 'N levels'
+- provide immediate feedback on what the user knows/doesn't know
+- encourage active learning through guided hints
 - reduce teachers' workload (no marking needed!)
 
 ## Dependencies

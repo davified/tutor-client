@@ -89,7 +89,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $mdDialog.show(
           $mdDialog.confirm()
             .clickOutsideToClose(true)
-            .title('DONE!')
+            .title('DONE! You\'ve obtained 10 Shurikens')
             .textContent('Do you want to continue to your next Mission?')
             .ariaLabel('Completed exercise!')
             .ok('Bring it on!')

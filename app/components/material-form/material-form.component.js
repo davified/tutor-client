@@ -65,6 +65,8 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
         $http.post('https://learning-ninja-api.herokuapp.com/signup/', self.user).then(function successCallback (response) {
           console.log('sign up success!', response)
           $window.location.href = '/#!/roadmap'
+          $window.location.reload()
+
         }, function errorCallback (response) {
           console.log('sign up failed!', response)
         })

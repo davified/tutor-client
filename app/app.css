@@ -67,6 +67,13 @@ md-input-container#email {
   margin-bottom: 0
 }
 
+/* for registration details */
+div#registrationForm {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: -10%
+}
+
 /* for sidenav */
 md-list-item > button {
   width:100%;

@@ -2,7 +2,7 @@
 
 This repo contains server-side code for Learning Ninja, which is an app that makes learning math fun and accessible. Built with Angular 1
 
-## Business
+## The Big Idea
 
 The app hopes to:
 

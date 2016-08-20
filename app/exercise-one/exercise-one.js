@@ -14,6 +14,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $mdIconProvider.icon('menu', './svg/menu.svg', 24)
   }])
   .controller('ExerciseOneCtrl', ['$scope', '$http', 'httpFactory', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', '$window', function ($scope, $http, httpFactory, $routeParams, $mdDialog, $mdToast, $mdSidenav, $window) {
+    $scope.isLoading = true
     $scope.toggleSideNav = function () {
       $mdSidenav('left').toggle()
     }
@@ -36,9 +37,12 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $scope.topics = response.data
         $scope.topicsLength = response.data.length
         $scope.currentTopic = $scope.topics[$scope.currentTopicIndex]
+
         $http.get('https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level + '/exercises/' + $scope.currentTopic).then(function (response) {
           $scope.questions = response.data.questions
           $scope.showCurrentQuestion()
+          $scope.isLoading = false
+          console.log($scope.questions)
         })
       })
     }

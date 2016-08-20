@@ -180,3 +180,9 @@ md-fab-toolbar.navbar {
       height: 150vw;
     }
   }
+
+md-progress-circular.loadingIcon {
+  position: absolute;
+  padding-left: 40%;
+  padding-top: 40%
+}

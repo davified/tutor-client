@@ -13,7 +13,7 @@
     <div class="container" layout="row" flex>
       <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
           <md-list-item ng-repeat='topic in topics'>
-              <md-button>
+              <md-button ng-click="chooseTopic($index)">
                 <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
               </md-button>
           </md-list-item>

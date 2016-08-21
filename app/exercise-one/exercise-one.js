@@ -153,6 +153,12 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       // .hideDelay(3000)
       )
     }
+
+    $scope.chooseTopic = function (index) {
+      $rootScope.currentTopicIndex = index
+      $scope.loadExercise()
+    }
+
     $scope.loadExercise()
   }])
 

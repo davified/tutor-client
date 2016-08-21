@@ -29,7 +29,7 @@ angular.module('materialForm', ['ngMaterial', 'ngMessages'])
           school: '',
           address: '',
           postalCode: '',
-          birthday: '', // date
+          birthday: new Date('1 January, 1997'), // date
           level: '',
           aboutMe: ''
         }} else {

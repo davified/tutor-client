@@ -26,13 +26,15 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
 
     if ($window.localStorage.completedTopicsIndex) {
       $rootScope.currentTopicIndex = $window.localStorage.completedTopicsIndex
+      $rootScope.completedTopicsIndex = $window.localStorage.completedTopicsIndex
     } else {
+      $rootScope.completedTopicsIndex = 0
       $rootScope.currentTopicIndex = 0
     }
 
     var url = 'https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level
-    $scope.loadExercise = function() {
-      console.log('new exercise loaded');
+    $scope.loadExercise = function () {
+      console.log('new exercise loaded')
       httpFactory.httpGet(url).then(function (response) {
         $scope.questions = []
         $scope.currentQuestionIndex = 0
@@ -84,6 +86,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
       console.log($scope.completedQuestionsSubmission)
       $rootScope.currentTopicIndex++
       $window.localStorage.completedTopicsIndex = $rootScope.currentTopicIndex
+      $rootScope.completedTopicsIndex = $window.localStorage.completedTopicsIndex
     }
 
     $scope.showNextQuestion = function () {
@@ -98,7 +101,7 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $mdDialog.show(
           $mdDialog.confirm()
             .clickOutsideToClose(true)
-            .title('DONE! You\'ve obtained 10 Shurikens')
+            .title("DONE! You've obtained 10 Shurikens")
             .textContent('Do you want to continue to your next Mission?')
             .ariaLabel('Completed exercise!')
             .ok('Bring it on!')
@@ -107,12 +110,10 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
             .openFrom('#left')
             // or an element
             .closeTo(angular.element(document.querySelector('#right')))).then(function () {
-
-              $scope.loadExercise()
-            }, function () {
-
-              $window.location.href = '/#!/roadmap'
-            })
+          $scope.loadExercise()
+        }, function () {
+          $window.location.href = '/#!/roadmap'
+        })
       } else {
         $mdDialog.show(
           $mdDialog.alert()
@@ -155,8 +156,9 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     }
 
     $scope.chooseTopic = function (index) {
-      $rootScope.currentTopicIndex = index
+      $window.location.href = '/#!/exercise-one'
       $scope.loadExercise()
+      $rootScope.currentTopicIndex = index
     }
 
     $scope.loadExercise()

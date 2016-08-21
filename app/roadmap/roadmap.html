@@ -30,11 +30,18 @@
         <h1 id="roadmapUsername">Welcome {{ninjaName}}</h1>
       </div>
 
-      <md-progress-linear md-mode="determinate" value="{{currentTopicIndex/topicsLength * 100}}"></md-progress-linear>
+      <md-progress-linear md-mode="determinate" value="{{completedTopicsIndex/topicsLength * 100}}"></md-progress-linear>
       <div class="container" layout="row" flex>
+        <!-- <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
+            <md-list-item ng-repeat='topic in topics' href="#!/exercise-one" ng-click=chooseTopic($index)> -->
+                <!-- <md-button> -->
+                  <!-- <h3 style="text-align: center; margin: 0px">{{topic}}</h2> -->
+                <!-- </md-button> -->
+            <!-- </md-list-item>
+        </md-sidenav> -->
         <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
-            <md-list-item ng-repeat='topic in topics'>
-                <md-button>
+            <md-list-item ng-repeat='topic in topics' >
+                <md-button ng-controller="ExerciseOneCtrl" ng-click="chooseTopic($index)">
                   <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
                 </md-button>
             </md-list-item>

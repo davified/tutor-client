@@ -1,40 +1,65 @@
-<div id="roadmap" ng-cloak>
-  <div layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="toggleList()" aria-label="Show User List">
-      <md-icon md-svg-icon="menu" ></md-icon>
-    </md-button>
-    <md-icon md-svg-src="svg/avatar-1.svg" class="avatar" style="height:100px; width: 100px"></md-icon>
-    <h1>Welcome {{ninjaName}}</h1>
-  </div>
+<div id="roadmapContainer">
+  <div id="roadmap" ng-cloak>
+    <section class="blackie">
+      <div class="stars">
+        <div class="pos1 st1"></div>
+        <div class="pos2 st1"></div>
+        <div class="pos3 st1"></div>
+        <div class="pos4 st1"></div>
+        <div class="pos5 st1"></div>
+        <div class="pos6 st1"></div>
+        <div class="pos7 st1"></div>
+      </div>
+      <div class="moon"></div>
+      <div class="cloud blackie">
+        <div class="cloud1"><div></div></div>
+        <div class="cloud2"><div></div></div>
+        <div class="cloud3"><div></div></div>
+      </div>
+      <div class="mountain">
+        <div class="mount1"></div>
+      </div>
+    </section>
 
-  <div class="container" layout="row" flex>
-    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
-        <md-list-item ng-repeat='topic in topics'>
-            <md-button>
-              <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
-            </md-button>
-        </md-list-item>
-    </md-sidenav>
+    <div id="roadmapOverlay">
+      <div layout="row">
+        <md-button class="menu" hide-gt-sm ng-click="toggleList()" aria-label="Show User List">
+          <md-icon md-svg-icon="menu" ></md-icon>
+        </md-button>
+        <md-icon md-svg-src="svg/avatar-1.svg" class="avatar" style="height:100px; width: 100px"></md-icon>
+        <h1 id="roadmapUsername">Welcome {{ninjaName}}</h1>
+      </div>
 
-    <div layout="row" layout-align="center center" style="width:100%">
+      <div class="container" layout="row" flex>
+        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
+            <md-list-item ng-repeat='topic in topics'>
+                <md-button>
+                  <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
+                </md-button>
+            </md-list-item>
+        </md-sidenav>
 
-      <h2 id="welcome">
-        <br><br><br><br><br><br><br>
-        We have a mission for you.
-        <br><br>
-        To defeat the Oyabun (the boss).
-        <br><br>
-        Finish all the missions on the left to collect the necessary items for your final face-off.
-        <br><br>
+        <div layout="row" layout-align="center center" style="width:100%">
 
-        <a href="#!/exercise-one" style="text-decoration: none; color: grey">
-          <md-button style="float: right; color: grey; background: white; opacity: 0.5; padding: 0px 20px">
-            <h1> LET'S DO THIS →  </h1>
-          </md-button>
-        </a>
-      </h2>
+          <h2 id="welcome">
+            <br><br><br><br><br><br><br>
+            We have a mission for you.
+            <br><br>
+            To defeat the Oyabun (the boss).
+            <br><br>
+            Finish all the missions on the left to collect the necessary items for your final face-off.
+            <br><br>
+
+            <a href="#!/exercise-one" style="text-decoration: none; color: grey">
+              <md-button style="float: right; color: grey; background: white; opacity: 0.5; padding: 0px 20px">
+                <h1> LET'S DO THIS →  </h1>
+              </md-button>
+            </a>
+          </h2>
+        </div>
+
+
+      </div>
     </div>
-
-
   </div>
 </div>

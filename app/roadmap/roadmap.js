@@ -5,7 +5,8 @@ angular.module('myApp.roadmap', ['ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/roadmap', {
       templateUrl: 'roadmap/roadmap.html',
-      controller: 'roadmapCtrl'
+      controller: 'roadmapCtrl',
+      css: 'roadmap/roadmap.css'
     })
   }])
 

@@ -1,6 +1,25 @@
 <!-- <md-progress-circular class="loadingIcon" md-mode="indeterminate" ng-show="isLoading" md-diameter="300"></md-progress-circular> -->
 <body layout="column" ng-cloak>
     <!-- main content -->
+    <div layout="row">
+      <md-button class="menu" hide-gt-sm ng-click="toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <md-icon md-svg-src="svg/avatar-1.svg" class="avatar" style="height:100px; width: 100px"></md-icon>
+      <h1 id="roadmapUsername"></h1>
+    </div>
+    <md-progress-linear md-mode="determinate" value="{{currentTopicIndex/topicsLength * 100}}"></md-progress-linear>
+
+    <div class="container" layout="row" flex>
+      <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
+          <md-list-item ng-repeat='topic in topics'>
+              <md-button>
+                <h3 style="text-align: center; margin: 0px">{{topic}}</h2>
+              </md-button>
+          </md-list-item>
+      </md-sidenav>
+
+
     <md-content id="content" flex layout="column">
       <div layout="row" class="dialogdemoOpenFromCloseTo" flex>
         <div layout="column" layout-align="center center" style="background-color: #f2f2f2" class="md-padding">
@@ -8,10 +27,10 @@
         </div>
 
         <div layout="column" layout-align="center start" layout-padding="" id="exercise" flex>
-          <div style="display: block; text-align: right; width: 100%">
-            Topic: {{currentTopic}} ({{currentTopicIndex}} / {{topicsLength}}) | Current question: {{currentQuestionIndex}} out of {{questions.length}}
+          <div style="display: block; text-align: left; width: 100%">
+            Current topic: {{currentTopic}} ({{currentTopicIndex}} / {{topicsLength}}) <br> Current question: {{currentQuestionIndex}} out of {{questions.length}}
           </div>
-          <md-progress-linear md-mode="determinate" value="{{currentTopicIndex * 10}}"></md-progress-linear>
+          <md-progress-linear class="md-accent" md-mode="determinate" value="{{currentQuestionIndex/questions.length * 100}}"></md-progress-linear>
           {{currentQuestionIndex + 1}}. {{currentQuestion.question}}
           <br>
 

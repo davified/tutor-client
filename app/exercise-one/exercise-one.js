@@ -13,9 +13,9 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $mdIconProvider.icon('share', './svg/share.svg', 24)
     $mdIconProvider.icon('menu', './svg/menu.svg', 24)
   }])
-  .controller('ExerciseOneCtrl', ['$scope', '$http', 'httpFactory', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', '$window', function ($scope, $http, httpFactory, $routeParams, $mdDialog, $mdToast, $mdSidenav, $window) {
+  .controller('ExerciseOneCtrl', ['$rootScope', '$scope', '$http', 'httpFactory', '$routeParams', '$mdDialog', '$mdToast', '$mdSidenav', '$window', function ($rootScope, $scope, $http, httpFactory, $routeParams, $mdDialog, $mdToast, $mdSidenav, $window) {
     $scope.isLoading = true
-    $scope.toggleSideNav = function () {
+    $scope.toggleList = function () {
       $mdSidenav('left').toggle()
     }
 
@@ -24,7 +24,11 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     ]
     $scope.correctMessageBody = ["You're on a roll!", 'Good job ninja. Keep going.', 'Well done mate.', 'Are you for real?', 'Keep it up Shinobi.', "You're on your way to Samurai-hood.", 'Master of invisibility, you shall be.']
 
-    $scope.currentTopicIndex = 0
+    if ($window.localStorage.completedTopicsIndex) {
+      $rootScope.currentTopicIndex = $window.localStorage.completedTopicsIndex
+    } else {
+      $rootScope.currentTopicIndex = 0
+    }
 
     var url = 'https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level
     $scope.loadExercise = function() {
@@ -35,8 +39,8 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $scope.numberOfWrongAttempts = 0
         $scope.completedQuestionsSubmission = []
         $scope.topics = response.data
-        $scope.topicsLength = response.data.length
-        $scope.currentTopic = $scope.topics[$scope.currentTopicIndex]
+        $rootScope.topicsLength = response.data.length
+        $scope.currentTopic = $scope.topics[$rootScope.currentTopicIndex]
 
         $http.get('https://learning-ninja-api.herokuapp.com/levels/' + $window.localStorage.level + '/exercises/' + $scope.currentTopic).then(function (response) {
           $scope.questions = response.data.questions
@@ -78,7 +82,8 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
     $scope.submitExercise = function () {
       $http.post('https://learning-ninja-api.herokuapp.com/submit', $scope.completedQuestionsSubmission)
       console.log($scope.completedQuestionsSubmission)
-      $scope.currentTopicIndex++
+      $rootScope.currentTopicIndex++
+      $window.localStorage.completedTopicsIndex = $rootScope.currentTopicIndex
     }
 
     $scope.showNextQuestion = function () {

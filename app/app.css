@@ -99,14 +99,10 @@ h2#welcome {
 
 md-sidenav#sidenav {
   background: rgba(255,255,255,0.5);
-  height: 90vmin;
-  margin-top: -5px
+  height: 91vmin;
 }
 
 /* for exercise */
-div#exercise {
-  margin-top: 70px
-}
 
 div#exercise-count {
   display: block !important;

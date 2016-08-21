@@ -30,6 +30,7 @@
         <h1 id="roadmapUsername">Welcome {{ninjaName}}</h1>
       </div>
 
+      <md-progress-linear md-mode="determinate" value="{{currentTopicIndex/topicsLength * 100}}"></md-progress-linear>
       <div class="container" layout="row" flex>
         <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" md-component-id="left" id="sidenav">
             <md-list-item ng-repeat='topic in topics'>

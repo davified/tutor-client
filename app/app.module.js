@@ -10,6 +10,8 @@ var myApp = angular.module('myApp', [
   'myApp.version',
   'ngMaterial',
   'myApp.material',
+  'myApp.dashboard',
+  'chart.js',
 
   // components
   'popup',

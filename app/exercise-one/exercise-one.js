@@ -1,6 +1,6 @@
 /* global angular */
 
-angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngSanitize', 'material.svgAssetsCache'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/exercise-one', {
@@ -101,8 +101,9 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $mdDialog.show(
           $mdDialog.confirm()
             .clickOutsideToClose(true)
-            .title("DONE! You've obtained 10 Shurikens")
-            .textContent('Do you want to continue to your next Mission?')
+            .title("Well done, ninja! You've obtained 10 Shurikens")
+            .htmlContent('<div><img src="http://www.sushininja.de/assets/img/ninja-logo.png" height="100px" width="100px" class="badgeIcon"></div><br>' + '<p class="badgeIcon">Do you want to continue to your next Mission?</p>')
+            // .textContent('Do you want to continue to your next Mission?')
             .ariaLabel('Completed exercise!')
             .ok('Bring it on!')
             .cancel('Nope. Bring me back to the roadmap')
@@ -119,7 +120,8 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
           $mdDialog.alert()
             .clickOutsideToClose(true)
             .title($scope.correctMessageTitles[getRandomInt(0, 99)].toUpperCase() + '!')
-            .textContent($scope.correctMessageBody[getRandomInt(0, 6)])
+            .htmlContent('<p>' + $scope.correctMessageBody[getRandomInt(0, 6)] + '</p> ')
+            // .textContent($scope.correctMessageBody[getRandomInt(0, 6)])
             .ariaLabel('correct answer!')
             .ok('Next question!')
             // You can specify either sting with query selector
@@ -151,7 +153,6 @@ angular.module('myApp.exerciseOne', ['ngRoute', 'ngMaterial', 'ngMessages', 'mat
         $mdToast.simple()
           .textContent("That's not quite right. I'll give you a hint: " + $scope.currentQuestion.hints)
           .position(pinTo)
-      // .hideDelay(3000)
       )
     }
 

@@ -16,6 +16,8 @@
     "angular-bootstrap": "^2.0.1",
     "angular-material": "^1.0.9",
     "angular-messages": "^1.5.8",
-    "moment": "^2.14.1"
+    "moment": "^2.14.1",
+    "chart.js": "npm:chart.js#^2.2.1",
+    "angular-chart.js": "^1.0.2"
   }
 }

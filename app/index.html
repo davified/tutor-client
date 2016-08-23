@@ -17,14 +17,6 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-  <!-- <div>
-    <md-button><a href="#!/login">login</a></md-button>
-    <md-button><a href="#!/material">sign-up form</a></md-button>
-    <md-button><a href="#!/roadmap">roadmap</a></md-button>
-    <md-button><a href="#!/exercise">exercise</a></md-button>
-    <md-button><a href="#!/exercise-one">exercise-one</a></md-button>
-  </div> -->
-
   <md-fab-toolbar md-open="demo.isOpen" count="demo.count"
                  md-direction="left" class="navbar">
      <md-fab-trigger class="align-with-text">
@@ -36,6 +28,7 @@
        <md-fab-actions class="md-toolbar-tools" ng-controller="AppCtrl">
          <md-button ng-show="!userIsLoggedIn"><a href="#!/login">login</a></md-button>
          <md-button ng-show="userIsLoggedIn" ng-click="logout()"><a href="#!/login">logout</a></md-button>
+         <md-button ng-show="userIsLoggedIn"><a href="#!/dashboard">dashboard</a></md-button>
          <md-button ng-show="userIsLoggedIn"><a href="#!/material">edit account</a></md-button>
          <md-button ng-show="userIsLoggedIn"><a href="#!/roadmap">roadmap</a></md-button>
          <md-button ng-show="userIsLoggedIn"><a href="#!/exercise-one">exercise</a></md-button>

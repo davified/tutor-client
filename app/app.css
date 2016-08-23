@@ -181,13 +181,23 @@ p.badgeIcon {
       height: 100vmax;
     }
 
-
+    .blackie {
+      height: 100vmax
+    }
   }
 
   @media (max-width: 600px) {
     #loginpage {
       height: 100vmax;
       padding: 0 20px;
+    }
+
+    .blackie {
+      height: 100vmax
+    }
+
+    #roadmapOverlay > * {
+      font-size: 0.7em
     }
   }
 

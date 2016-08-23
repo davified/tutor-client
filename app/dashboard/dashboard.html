@@ -2,12 +2,12 @@
   <div layout="column" layout-align="center" layout-fill="layout-fill">
     <div layout="column">
       <md-toolbar class='md-hue-2'>
-        <p class="md-toolbar-tools">DASHBOARD</p>
+        <p class="text-center md-toolbar-tools">DASHBOARD</p>
       </md-toolbar>
       <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
         <div flex-gt-xs="66" flex class="md-whiteframe-4dp">
           <md-toolbar class='md-hue-1'>
-            <p class="text-center">My score (all topics)</p>
+            <p class="text-center">Total score</p>
           </md-toolbar>
           <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"</canvas>
         </div>
@@ -49,6 +49,9 @@
         </div>
       </div>
       <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
+        <md-toolbar class='md-hue-2'>
+          <p class="text-center md-toolbar-tools">Score by topics</p>
+        </md-toolbar>
         <div flex-gt-xs="25" flex class="md-whiteframe-4dp">
           <p class="text-center">Arithmetic</p>
           <canvas id="doughnut" class="chart chart-doughnut"
@@ -77,9 +80,6 @@
           </canvas>
           <br>
         </div>
-      </div>
-      <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
-        <md-toolbar></md-toolbar>
       </div>
     </div>
   </div>

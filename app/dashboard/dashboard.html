@@ -4,16 +4,16 @@
       <md-toolbar class='md-hue-2'>
         <p class="md-toolbar-tools">DASHBOARD</p>
       </md-toolbar>
-      <div layout="row" layout-xs="column" layout-md="column">
-        <div flex-gt-xs="66" flex>
+      <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
+        <div flex-gt-xs="66" flex class="md-whiteframe-4dp">
           <md-toolbar class='md-hue-1'>
-            <p style='text-align: center'>My score (All topics)</p>
+            <p class="text-center">My score (all topics)</p>
           </md-toolbar>
           <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"</canvas>
         </div>
-        <div flex-gt-xs="33" flex style='height: 60vmin; overflow-y: scroll'>
-          <md-toolbar class='md-hue-3'>
-            <p style='text-align: center'>My badges</p>
+        <div flex-gt-xs="33" flex style='height: 70vmin; overflow-y: scroll'>
+          <md-toolbar class='md-hue-1'>
+            <p class="text-center">My badges</p>
           </md-toolbar>
           <md-icon md-svg-src="svg/badges/ninja-shuriken-2.svg" class="avatar"></md-icon>
           <md-icon md-svg-src="svg/badges/ninja-shuriken-1.svg" class="avatar"></md-icon>
@@ -48,9 +48,39 @@
           <md-icon md-svg-src="svg/badges/ninja-3.svg" class="avatar"></md-icon>
         </div>
       </div>
-
-
-
+      <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
+        <div flex-gt-xs="25" flex class="md-whiteframe-4dp">
+          <p class="text-center">Arithmetic</p>
+          <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="data2" chart-labels="labels2">
+          </canvas>
+          <br>
+        </div>
+        <div flex-gt-xs="25" flex class="md-whiteframe-4dp">
+          <p class="text-center">Fractions</p>
+          <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="data3" chart-labels="labels3">
+          </canvas>
+          <br>
+        </div>
+        <div flex-gt-xs="25" flex class="md-whiteframe-4dp">
+          <p class="text-center">Geometry</p>
+          <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="data4" chart-labels="labels4">
+          </canvas>
+          <br>
+        </div>
+        <div flex-gt-xs="25" flex class="md-whiteframe-4dp">
+          <p class="text-center">Measurement</p>
+          <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="data5" chart-labels="labels5">
+          </canvas>
+          <br>
+        </div>
+      </div>
+      <div layout="row" layout-xs="column" layout-md="column" class="md-whiteframe-4dp">
+        <md-toolbar></md-toolbar>
+      </div>
     </div>
   </div>
 </div>

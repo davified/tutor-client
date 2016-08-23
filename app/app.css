@@ -33,6 +33,10 @@
   padding: 0;
 }
 
+.text-center {
+  text-align: center
+}
+
 ol {
     list-style-type: upper-alpha;
   }
